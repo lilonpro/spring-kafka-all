@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.Person;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +23,9 @@ public class DemoApplication implements CommandLineRunner {
     @Autowired
     private KafkaTemplate<String, Person> template;
 
+	@Value("${kafka.topic}")
+	private String topic;
+
     private final CountDownLatch latch = new CountDownLatch(3);
 
     @Override
@@ -29,14 +33,14 @@ public class DemoApplication implements CommandLineRunner {
         Person person0 = Person.newBuilder().setFullName("Anakin Skywalker").build();
         Person person1 = Person.newBuilder().setFullName("Leia Skywalker").build();
         Person person2 = Person.newBuilder().setFullName("Luke Skywalker").build();
-        this.template.send("myTopic", person0);
-        this.template.send("myTopic", person1);
-        this.template.send("myTopic", person2);
+        this.template.send(topic, person0);
+        this.template.send(topic, person1);
+        this.template.send(topic, person2);
         latch.await(60, TimeUnit.SECONDS);
         System.out.println("All received");
     }
 
-    @KafkaListener(topics = "myTopic")
+    @KafkaListener(topics = "${kafka.topic}")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
         System.out.println(cr.toString());
         latch.countDown();
