@@ -63,7 +63,7 @@ public class Application implements CommandLineRunner {
 //        this.template.send(topic, person2);
 
         // To check send result using sync or async see https://docs.spring.io/spring-kafka/docs/2.1.9.RELEASE/reference/html/_reference.html#_examples
-        this.template.send(message0).;
+        this.template.send(message0);
         this.template.send(message1);
         this.template.send(message2);
 
