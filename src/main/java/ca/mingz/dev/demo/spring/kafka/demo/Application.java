@@ -62,7 +62,8 @@ public class Application implements CommandLineRunner {
 //        this.template.send(topic, person1);
 //        this.template.send(topic, person2);
 
-        this.template.send(message0);
+        // To check send result using sync or async see https://docs.spring.io/spring-kafka/docs/2.1.9.RELEASE/reference/html/_reference.html#_examples
+        this.template.send(message0).;
         this.template.send(message1);
         this.template.send(message2);
 
@@ -70,6 +71,8 @@ public class Application implements CommandLineRunner {
         logger.info("All received");
     }
 
+    // to use multi thread consumer use ConcurrentMessageListenerContainer
+    // see https://docs.spring.io/spring-kafka/docs/2.1.9.RELEASE/reference/html/_reference.html#message-listener-container
     @KafkaListener(topics = "${kafka.topic}")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
         logger.info(cr.toString());
