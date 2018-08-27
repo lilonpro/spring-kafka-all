@@ -11,6 +11,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -34,11 +37,35 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Person person0 = Person.newBuilder().setFullName("Anakin Skywalker").build();
+        // See example https://memorynotfound.com/spring-kafka-adding-custom-header-kafka-message-example/
+        Message<Person> message0 = MessageBuilder
+                .withPayload(person0)
+                .setHeader(KafkaHeaders.TOPIC, topic)
+                .setHeader("Role", "Father")
+                .build();
+
         Person person1 = Person.newBuilder().setFullName("Leia Skywalker").build();
+        Message<Person> message1 = MessageBuilder
+                .withPayload(person1)
+                .setHeader(KafkaHeaders.TOPIC, topic)
+                .setHeader("Role", "Daughter")
+                .build();
+
         Person person2 = Person.newBuilder().setFullName("Luke Skywalker").build();
-        this.template.send(topic, person0);
-        this.template.send(topic, person1);
-        this.template.send(topic, person2);
+        Message<Person> message2 = MessageBuilder
+                .withPayload(person2)
+                .setHeader(KafkaHeaders.TOPIC, topic)
+                .setHeader("Role", "Son")
+                .build();
+
+//        this.template.send(topic, person0);
+//        this.template.send(topic, person1);
+//        this.template.send(topic, person2);
+
+        this.template.send(message0);
+        this.template.send(message1);
+        this.template.send(message2);
+
         latch.await(60, TimeUnit.SECONDS);
         logger.info("All received");
     }
