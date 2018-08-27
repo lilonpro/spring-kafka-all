@@ -2,6 +2,8 @@ package ca.mingz.dev.demo.spring.kafka.demo;
 
 import ca.mingz.dev.demo.spring.kafka.demo.model.Person;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
+    public static Logger logger = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -37,12 +40,12 @@ public class Application implements CommandLineRunner {
         this.template.send(topic, person1);
         this.template.send(topic, person2);
         latch.await(60, TimeUnit.SECONDS);
-        System.out.println("All received");
+        logger.info("All received");
     }
 
     @KafkaListener(topics = "${kafka.topic}")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
-        System.out.println(cr.toString());
+        logger.info(cr.toString());
         latch.countDown();
     }
 }
