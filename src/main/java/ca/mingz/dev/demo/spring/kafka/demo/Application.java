@@ -1,6 +1,6 @@
-package com.example.demo;
+package ca.mingz.dev.demo.spring.kafka.demo;
 
-import com.example.Person;
+import ca.mingz.dev.demo.spring.kafka.demo.model.Person;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +14,10 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
-public class DemoApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
     @Autowired

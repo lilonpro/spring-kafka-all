@@ -3,15 +3,15 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.example;
+package ca.mingz.dev.demo.spring.kafka.demo.model;
 
 import org.apache.avro.specific.SpecificData;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Person extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 3030586213307214764L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Person\",\"namespace\":\"com.example\",\"fields\":[{\"name\":\"full_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Full name of person\"}],\"version\":\"1\"}");
+  private static final long serialVersionUID = 4172308591613856705L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Person\",\"namespace\":\"ca.mingz.dev.demo.spring.kafka.model\",\"fields\":[{\"name\":\"full_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"doc\":\"Full name of person\"}],\"version\":\"1\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** Full name of person */
   @Deprecated public java.lang.String full_name;
@@ -70,8 +70,8 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
    * Creates a new Person RecordBuilder.
    * @return A new Person RecordBuilder
    */
-  public static com.example.Person.Builder newBuilder() {
-    return new com.example.Person.Builder();
+  public static Person.Builder newBuilder() {
+    return new Person.Builder();
   }
 
   /**
@@ -79,8 +79,8 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
    * @param other The existing builder to copy.
    * @return A new Person RecordBuilder
    */
-  public static com.example.Person.Builder newBuilder(com.example.Person.Builder other) {
-    return new com.example.Person.Builder(other);
+  public static Person.Builder newBuilder(Person.Builder other) {
+    return new Person.Builder(other);
   }
 
   /**
@@ -88,8 +88,8 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
    * @param other The existing instance to copy.
    * @return A new Person RecordBuilder
    */
-  public static com.example.Person.Builder newBuilder(com.example.Person other) {
-    return new com.example.Person.Builder(other);
+  public static Person.Builder newBuilder(Person other) {
+    return new Person.Builder(other);
   }
 
   /**
@@ -110,7 +110,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.example.Person.Builder other) {
+    private Builder(Person.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.full_name)) {
         this.full_name = data().deepCopy(fields()[0].schema(), other.full_name);
@@ -122,7 +122,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
      * Creates a Builder by copying an existing Person instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.example.Person other) {
+    private Builder(Person other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.full_name)) {
         this.full_name = data().deepCopy(fields()[0].schema(), other.full_name);
@@ -145,7 +145,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
       * @param value The value of 'full_name'.
       * @return This builder.
       */
-    public com.example.Person.Builder setFullName(java.lang.String value) {
+    public Person.Builder setFullName(java.lang.String value) {
       validate(fields()[0], value);
       this.full_name = value;
       fieldSetFlags()[0] = true;
@@ -167,7 +167,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
       * Full name of person
       * @return This builder.
       */
-    public com.example.Person.Builder clearFullName() {
+    public Person.Builder clearFullName() {
       full_name = null;
       fieldSetFlags()[0] = false;
       return this;

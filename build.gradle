@@ -19,7 +19,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'com.example'
+group = 'ca.mingz.dev.demo.spring.kafka'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -28,6 +28,15 @@ repositories {
 	maven {
 		url "http://packages.confluent.io/maven/"
 	}
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java'
+            srcDirs 'src/main/avro'
+        }
+    }
 }
 
 

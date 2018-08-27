@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "namespace": "com.example",
+  "namespace": "ca.mingz.dev.demo.spring.kafka.model",
   "name": "Person",
   "version": "1",
   "fields": [
