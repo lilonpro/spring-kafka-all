@@ -73,6 +73,7 @@ public class Application implements CommandLineRunner {
 
     // to use multi thread consumer use ConcurrentMessageListenerContainer
     // see https://docs.spring.io/spring-kafka/docs/2.1.9.RELEASE/reference/html/_reference.html#message-listener-container
+    // To be able to seek offset we need a listener class see https://docs.spring.io/spring-kafka/docs/2.1.9.RELEASE/reference/html/_reference.html#seek
     @KafkaListener(topics = "${kafka.topic}")
     public void listen(ConsumerRecord<?, ?> cr) throws Exception {
         logger.info(cr.toString());
