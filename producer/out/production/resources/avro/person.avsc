@@ -1,0 +1,13 @@
+{
+  "type": "record",
+  "namespace": "ca.mingz.dev.demo.spring.kafka.model",
+  "name": "Person",
+  "version": "1",
+  "fields": [
+    {
+      "name": "full_name",
+      "type": "string",
+      "doc": "Full name of person"
+    }
+  ]
+}
