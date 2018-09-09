@@ -21,22 +21,19 @@ public class ApplicationConsumer{
 	@Value("${kafka.topic}")
 	private String topic;
     // Simple consumer
-    @KafkaListener(topicPartitions =
-    {
-        @TopicPartition(topic = "${kafka.topic}", partitions = "0")
-    })
+    @KafkaListener(topics = "${kafka.topic}")
     public void listen0(Message<?> message) throws Exception {
         logger.info("-- consumer 0 --" + message.getHeaders().toString());
         logger.info("-- consumer 0 --" + message.getPayload().toString());
     }
 
-    // Consumer from a given offset
-    @KafkaListener(topicPartitions =
-    {
-        @TopicPartition(topic = "${kafka.topic}", partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "20"))
-    })
-    public void listen2(Message<?> message) throws Exception {
-        logger.info("-- consumer 1 --" + message.getHeaders().toString());
-        logger.info("-- consumer 1 --" + message.getPayload().toString());
-    }
+//    // Consumer from a given offset
+//    @KafkaListener(topicPartitions =
+//    {
+//        @TopicPartition(topic = "${kafka.topic}", partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "20"))
+//    })
+//    public void listen2(Message<?> message) throws Exception {
+//        logger.info("-- consumer 1 --" + message.getHeaders().toString());
+//        logger.info("-- consumer 1 --" + message.getPayload().toString());
+//    }
 }
