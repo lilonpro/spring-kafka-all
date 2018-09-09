@@ -21,7 +21,14 @@ public class ApplicationConsumer{
 	@Value("${kafka.topic}")
 	private String topic;
     // Simple consumer
+    // auto assign partition
     @KafkaListener(topics = "${kafka.topic}")
+    // consumer tells kafka which partition it will read, in this case multiple consumer can read from same partition
+    // of same topic which results in duplicate message to be received?!?!
+//    @KafkaListener(topicPartitions =
+//    {
+//            @TopicPartition(topic = "${kafka.topic}", partitions = "1")
+//    })
     public void listen0(Message<?> message) throws Exception {
         logger.info("-- consumer 0 --" + message.getHeaders().toString());
         logger.info("-- consumer 0 --" + message.getPayload().toString());

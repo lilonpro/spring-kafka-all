@@ -39,7 +39,7 @@ public class ApplicationProducer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Person person;
         Message<Person> message;
-        for(int n=0; n< 100; n++){
+        for(int n=0; n< 2; n++){
             person = Person.newBuilder().setFullName("James_Bond_" + n).build();
             message = MessageBuilder
                     .withPayload(person)
